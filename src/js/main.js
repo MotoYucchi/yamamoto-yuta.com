@@ -100,4 +100,24 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', initCanvas);
   initCanvas();
   draw();
+
+  // Language Switcher Logic
+  const btnJa = document.getElementById('lang-btn-ja');
+  const btnEn = document.getElementById('lang-btn-en');
+  
+  if (btnJa && btnEn) {
+    btnJa.addEventListener('click', () => {
+      document.body.classList.remove('lang-state-en');
+      document.body.classList.add('lang-state-ja');
+      btnJa.classList.add('active');
+      btnEn.classList.remove('active');
+    });
+
+    btnEn.addEventListener('click', () => {
+      document.body.classList.remove('lang-state-ja');
+      document.body.classList.add('lang-state-en');
+      btnEn.classList.add('active');
+      btnJa.classList.remove('active');
+    });
+  }
 });
