@@ -1,7 +1,7 @@
 ---
 title: "山本悠太 (Yuta Yamamoto) - Portfolio"
 description: "静岡県出身のエンジニア。ボーカロイド鑑賞とVJが趣味。現在、湘南工科大学にて学業と研究に励んでいる。2026年1月に電子情報通信学会にて学会発表を行った。"
-keywords: ["山本悠太", "Yamamoto Yuta", "Yuta Yamamoto", "やまもとゆうた" , "やまもと", "ゆうた", "山本" , "悠太" , "Yuta", "Yamamoto", "静岡", "湘南工科大学", "Shonan Institute of Technology", "SIT" , "VJ", "ボーカロイド" , "VOCALOID", "Rear Projection", "Hotspot Phenomenon", "Geometric Occlusion", "Glare", "Projection Mapping", "プロジェクションマッピング"]
+keywords: ["山本悠太", "Yamamoto Yuta", "Yuta Yamamoto", "やまもとゆうた" , "やまもと", "ゆうた", "山本" , "悠太" , "Yuta", "Yamamoto", "静岡", "Shizuoka", "湘南工科大学", "Shonan Institute of Technology", "湘南工大" , "SIT" , "VJ", "ボーカロイド" , "VOCALOID", "Rear Projection", "Hotspot Phenomenon", "Geometric Occlusion", "Glare", "Projection Mapping", "プロジェクションマッピング"]
 ---
 
 :::ja
