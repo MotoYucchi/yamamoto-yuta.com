@@ -22,25 +22,34 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  // Dynamic Background Canvas
+  // Dynamic Background Canvas (Happy Pop Theme)
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
   
   let width, height;
   let particles = [];
+  
+  const colors = [
+    'rgba(255, 0, 127, 0.6)',   // Magenta
+    'rgba(0, 210, 255, 0.6)',   // Cyan
+    'rgba(255, 222, 0, 0.6)',   // Yellow
+    'rgba(255, 255, 255, 0.8)'  // White
+  ];
 
   function initCanvas() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
     particles = [];
-    for (let i = 0; i < 50; i++) {
+    // More particles for a lively feel
+    for (let i = 0; i < 60; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() * 2 + 1,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        color: Math.random() > 0.5 ? 'rgba(0, 240, 255, 0.5)' : 'rgba(255, 0, 60, 0.5)'
+        radius: Math.random() * 6 + 2, // Slightly larger particles
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        pulsePhase: Math.random() * Math.PI * 2
       });
     }
   }
@@ -51,27 +60,35 @@ document.addEventListener('DOMContentLoaded', () => {
     particles.forEach((p, index) => {
       p.x += p.vx;
       p.y += p.vy;
+      p.pulsePhase += 0.05;
 
-      if (p.x < 0 || p.x > width) p.vx *= -1;
-      if (p.y < 0 || p.y > height) p.vy *= -1;
+      // Wrap around screen instead of bounce for continuous flow
+      if (p.x < -20) p.x = width + 20;
+      if (p.x > width + 20) p.x = -20;
+      if (p.y < -20) p.y = height + 20;
+      if (p.y > height + 20) p.y = -20;
+
+      // Pulsing effect
+      const currentRadius = p.radius + Math.sin(p.pulsePhase) * 1.5;
 
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, Math.max(0.1, currentRadius), 0, Math.PI * 2);
       ctx.fillStyle = p.color;
       ctx.fill();
 
-      // Connect near particles
+      // Connect near particles with bright lines
       for (let j = index + 1; j < particles.length; j++) {
         const p2 = particles[j];
         const dx = p.x - p2.x;
         const dy = p.y - p2.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 150) {
+        if (dist < 120) {
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(0, 240, 255, ${0.2 - dist/750})`;
+          ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 - dist/400})`;
+          ctx.lineWidth = 1.5;
           ctx.stroke();
         }
       }

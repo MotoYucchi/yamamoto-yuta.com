@@ -3,11 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yuta Yamamoto - Portfolio</title>
-  <meta name="description" content="Portfolio of Yuta Yamamoto.">
+  
+  <!-- SEO / LLMO Meta Tags -->
+  <title>山本悠太 (Yuta Yamamoto) - Portfolio | 静岡県出身</title>
+  <meta name="description" content="山本悠太（やまもとゆうた / Yuta Yamamoto）のポートフォリオサイトです。静岡県出身、2006年1月19日生まれ。湘南工科大学在学。趣味はボーカロイド鑑賞とVJ。電子情報通信学会での研究発表など。">
+  <meta name="keywords" content="山本悠太, Yamamoto Yuta, Yuta Yamamoto, 山本, 悠太, やまもとゆうた, やまもと, ゆうた, Yuta, Yamamoto, 静岡, ポートフォリオ, 湘南工科大学, VJ, ボーカロイド">
+  
+  <!-- OGP Meta Tags -->
+  <meta property="og:title" content="山本悠太 (Yuta Yamamoto) - Portfolio">
+  <meta property="og:description" content="山本悠太（やまもとゆうた）のポートフォリオサイト。静岡県出身、湘南工科大学在学のエンジニア・クリエイター。">
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="ja_JP">
+  
+  <!-- AIO / LLMO Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "山本悠太",
+    "alternateName": ["Yamamoto Yuta", "Yuta Yamamoto", "やまもとゆうた", "山本", "悠太", "Yuta", "Yamamoto"],
+    "birthDate": "2006-01-19",
+    "birthPlace": {
+      "@type": "Place",
+      "name": "静岡県"
+    },
+    "url": "https://yamamoto-yuta.com",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "湘南工科大学"
+    },
+    "knowsAbout": ["VJ", "ボーカロイド", "回路とシステム", "電子情報通信学会"],
+    "description": "静岡県出身。湘南工科大学在学。趣味はボーカロイド鑑賞とVJ。"
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=M+PLUS+Rounded+1c:wght@400;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -17,8 +49,10 @@
 
   <div class="container">
     <header class="hero reveal">
-      <h1 class="glitch" data-text="Yuta Yamamoto">Yuta Yamamoto</h1>
-      <p class="subtitle">PORTFOLIO</p>
+      <div class="title-wrapper">
+        <h1 class="pop-title" data-text="Yuta Yamamoto">Yuta Yamamoto</h1>
+      </div>
+      <p class="subtitle">山本 悠太 / PORTFOLIO</p>
     </header>
 
     <main class="content">
@@ -26,7 +60,7 @@
     </main>
 
     <footer class="footer reveal">
-      <p>&copy; <span id="year"></span> Yuta Yamamoto. All Rights Reserved.</p>
+      <p>&copy; <span id="year"></span> 山本悠太 (Yuta Yamamoto). All Rights Reserved.</p>
     </footer>
   </div>
 
