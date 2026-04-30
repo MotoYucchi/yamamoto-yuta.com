@@ -47,6 +47,34 @@ async function build() {
     await fs.copy(path.join(SRC_DIR, 'css'), path.join(OUT_DIR, 'css'));
     await fs.copy(path.join(SRC_DIR, 'js'), path.join(OUT_DIR, 'js'));
 
+    // 10. Copy favicon
+    const faviconPath = path.join(SRC_DIR, 'YYPortfolio-favicon.png');
+    if (await fs.pathExists(faviconPath)) {
+      await fs.copy(faviconPath, path.join(OUT_DIR, 'favicon.png'));
+    }
+
+    // 11. Generate robots.txt
+    const SITE_URL = 'https://yamamoto-yuta.com';
+    const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`;
+    await fs.writeFile(path.join(OUT_DIR, 'robots.txt'), robotsTxt);
+
+    // 12. Generate sitemap.xml (Monthly change frequency)
+    const today = new Date().toISOString().split('T')[0];
+    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${SITE_URL}/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`;
+    await fs.writeFile(path.join(OUT_DIR, 'sitemap.xml'), sitemapXml);
+
     console.log('Build completed successfully! Check the /public directory.');
   } catch (error) {
     console.error('Build failed:', error);
