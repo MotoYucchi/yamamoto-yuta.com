@@ -106,18 +106,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnEn = document.getElementById('lang-btn-en');
   
   if (btnJa && btnEn) {
-    btnJa.addEventListener('click', () => {
-      document.body.classList.remove('lang-state-en');
-      document.body.classList.add('lang-state-ja');
-      btnJa.classList.add('active');
-      btnEn.classList.remove('active');
-    });
+    const setLanguage = (lang) => {
+      if (lang === 'ja') {
+        document.body.classList.remove('lang-state-en');
+        document.body.classList.add('lang-state-ja');
+        btnJa.classList.add('active');
+        btnEn.classList.remove('active');
+      } else {
+        document.body.classList.remove('lang-state-ja');
+        document.body.classList.add('lang-state-en');
+        btnEn.classList.add('active');
+        btnJa.classList.remove('active');
+      }
+    };
 
-    btnEn.addEventListener('click', () => {
-      document.body.classList.remove('lang-state-ja');
-      document.body.classList.add('lang-state-en');
-      btnEn.classList.add('active');
-      btnJa.classList.remove('active');
-    });
+    // Auto-detect browser language and timezone
+    const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    let defaultLang = 'en';
+
+    if (browserLang.startsWith('ja')) {
+      defaultLang = 'ja';
+    } else if (browserLang.startsWith('en')) {
+      defaultLang = 'en';
+    } else {
+      // If other language, check timezone
+      try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        if (tz === 'Asia/Tokyo') {
+          defaultLang = 'ja';
+        }
+      } catch (e) {
+        // Fallback to English if timezone detection fails
+      }
+    }
+
+    setLanguage(defaultLang);
+
+    btnJa.addEventListener('click', () => setLanguage('ja'));
+    btnEn.addEventListener('click', () => setLanguage('en'));
   }
 });
